@@ -1,3 +1,2 @@
 # SSH PyAgent
-
-## Pure Python implementation of OpenSSH agent protocol
+Pure Python implementation of OpenSSH agent protocol
