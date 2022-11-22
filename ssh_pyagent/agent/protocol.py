@@ -15,6 +15,9 @@ https://github.com/openssh/openssh-portable/blob/4e636cf/PROTOCOL.agent
 import logging
 from abc import ABCMeta
 
+from ssh_pyagent.consts import *
+from ssh_pyagent.agent.queue import SSHAgentRequestQueue
+
 logger = logging.getLogger(__name__)
 
 
@@ -24,7 +27,17 @@ class SSHAgentProtocol(metaclass=ABCMeta):
     """
 
     def __init__(self):
-        pass
+        self._request_queue = SSHAgentRequestQueue()
+
+    @property
+    def queue(self) -> SSHAgentRequestQueue:
+        return self._request_queue
+
+    def ssh_agent_success(self):
+        return
+
+    def ssh_agent_failure(self):
+        return
 
 
 class SSHAgentProtocolV1(SSHAgentProtocol):
@@ -34,7 +47,12 @@ class SSHAgentProtocolV1(SSHAgentProtocol):
 
     def __init__(self):
         super().__init__()
-        pass
+
+    def ssh_agent_rsa_identities_answer(self):
+        return
+
+    def ssh_agent_rsa_response(self):
+        return
 
 
 class SSHAgentProtocolV2(SSHAgentProtocol):
@@ -44,4 +62,9 @@ class SSHAgentProtocolV2(SSHAgentProtocol):
 
     def __init__(self):
         super().__init__()
-        pass
+
+    def ssh2_agent_identities_answer(self):
+        return
+
+    def ssh2_agent_sign_response(self):
+        return
