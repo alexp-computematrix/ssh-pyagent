@@ -1,8 +1,11 @@
 import io
+import logging
 import typing as t
 
 from ssh_pyagent.consts import SSH_AGENT_MAX_MSG_LENGTH
 from ssh_pyagent.transport import data
+
+logger = logging.getLogger(__name__)
 
 
 class SSHPacketException(Exception):
