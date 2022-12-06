@@ -13,25 +13,14 @@ For reference to the SSH Agent protocol see URL below:
 https://github.com/openssh/openssh-portable/blob/4e636cf/PROTOCOL.agent
 """
 import logging
-from abc import ABCMeta
-
-from ssh_pyagent.consts import *
-from ssh_pyagent.agent.queue import SSHAgentRequestQueue
 
 logger = logging.getLogger(__name__)
 
 
-class SSHAgentProtocol(metaclass=ABCMeta):
+class OpenSSHAgentProtocol:
     """
     SSH Agent Protocol Base
     """
-
-    def __init__(self):
-        self._request_queue = SSHAgentRequestQueue()
-
-    @property
-    def queue(self) -> SSHAgentRequestQueue:
-        return self._request_queue
 
     def ssh_agent_success(self):
         return
@@ -40,31 +29,25 @@ class SSHAgentProtocol(metaclass=ABCMeta):
         return
 
 
-class SSHAgentProtocolV1(SSHAgentProtocol):
+class OpenSSHAgentProtocolV1(OpenSSHAgentProtocol):
     """
     SSH Agent Version 1 protocol object
     """
 
-    def __init__(self):
-        super().__init__()
-
-    def ssh_agent_rsa_identities_answer(self):
+    def ssh_agent_rsa_identities_answer(self, request, keys):
         return
 
     def ssh_agent_rsa_response(self):
         return
 
 
-class SSHAgentProtocolV2(SSHAgentProtocol):
+class OpenSSHAgentProtocolV2(OpenSSHAgentProtocol):
     """
     SSH Agent Version 2 protocol object
     """
 
-    def __init__(self):
-        super().__init__()
-
-    def ssh2_agent_identities_answer(self):
+    def ssh2_agent_identities_answer(self, request, keys):
         return
 
-    def ssh2_agent_sign_response(self):
+    def ssh2_agent_sign_response(self, request, keys):
         return
